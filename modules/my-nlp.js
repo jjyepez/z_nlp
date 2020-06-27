@@ -5,7 +5,7 @@ let pnlp = require('../libs/lorca/plugins/pnlp');
 
 module.exports = (req, res, next) => {
 
-   let desde = 374, hasta = 381;
+   let desde = 421, hasta = 1000;
 
    let inputContentFile = './data/sampleContent.txt';
    let raw = fs.readFileSync(inputContentFile)
@@ -34,7 +34,7 @@ module.exports = (req, res, next) => {
 
       analisis[i] = [
          oracion,
-         //pnlp.silabasParaMetrica(oracion).join('-'),
+         pnlp.silabasParaMetrica(oracion).join('-'),
          metrica,
          ultima
       ];
