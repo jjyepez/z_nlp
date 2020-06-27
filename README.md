@@ -8,7 +8,7 @@ This is the initial alpha version of these experiments, using NLP with node.js
 - npm start
 
 ## Main references
-- ...
+- [Significado de Verso](https://www.significados.com/verso/)
 
 ## Main libs
 - lorca.js

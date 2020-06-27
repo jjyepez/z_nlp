@@ -1,13 +1,16 @@
-const nlp = require('lorca-nlp');
-const fs = require('fs');
+let fs = require('fs');
+
+let nlp = require('lorca-nlp');
+let pnlp = require('../libs/lorca/plugins/pnlp');
 
 module.exports = (req, res, next) => {
 
-   let desde = 12, hasta = 31;
+   let desde = 374, hasta = 381;
 
    let inputContentFile = './data/sampleContent.txt';
    let raw = fs.readFileSync(inputContentFile)
       .toString()
+      .replace(/\./g, ',')
       ;
 
    let texto = nlp(raw);
@@ -26,11 +29,12 @@ module.exports = (req, res, next) => {
       let oracionmetrica = oracion
          ;
 
-      let metrica = nlp(oracionmetrica).syllables().get().length;
+      let metrica = pnlp.metricaOracion(oracion);
       let ultima = nlp(oracion).words().get().pop();
 
       analisis[i] = [
          oracion,
+         //pnlp.silabasParaMetrica(oracion).join('-'),
          metrica,
          ultima
       ];
