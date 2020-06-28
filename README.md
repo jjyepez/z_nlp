@@ -9,6 +9,7 @@ This is the initial alpha version of these experiments, using NLP with node.js
 
 ## Main references
 - [Significado de Verso](https://www.significados.com/verso/)
+- [Análisis del Poema](https://www.portaleducativo.net/octavo-basico/191/Analisis-del-poema)
 
 ## Main libs
 - lorca.js

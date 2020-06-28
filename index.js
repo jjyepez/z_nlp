@@ -1,9 +1,9 @@
+let express = require('express');
 
-
-require('express')()
-   .get('/', (req, res, next) => {
-      require('./modules/my-nlp')(req, res, next);
-   })
+express()
+   .use(express.json())
+   .use('/', require('./routes'))
+   .use('/static', express.static('static'))
    .listen(5555, () => {
       console.log('http://localhost:5555');
    });

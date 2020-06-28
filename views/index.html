@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="shortcut icon" href="./static/favicon.ico" type="image/x-icon">
+   <title>Document</title>
+   <link rel="stylesheet" href="./static/style.css">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+   <div class='pt-4 p-2 d-flex align-content-center justify-content-center'>
+
+      <div class='column'>
+
+         <div>
+
+            <h1 class='h1'>pNLP</h1>
+            <div class='badge badge-primary'>v0.0.1a</div>
+            <div class='small'>Experimentos con NLP en node.js</div>
+
+            <div class='d-flex row'>
+               <div class='p-2'>
+                  <div>Input</div>
+                  <textarea id='inputContent' class="inputContent p-2" cols="30" rows="10"></textarea>
+                  <br>
+                  <button id='btnProcess' class='btn btn-dark'>Procesar texto</button>
+               </div>
+
+               <div class='p-2'>
+                  <div>Resultados</div>
+                  <pre id='output' class='output p-2'></pre>
+               </div>
+            </div>
+
+         </div>
+
+      </div>
+
+      <script src="../static/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+body, html {
+   font-family: monospace;
+   overflow: hidden;
+   position: absolute;
+   width: 100vw;
+   height: 100vh;
+   margin: 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: top;
+   box-sizing: border-box;
+}
+
+body {
+   overflow-y: scroll;
+}
+
+.inputContent {
+   min-width: 400px;
+   min-height: 350px;
+}
+
+.output {
+   color: greenyellow;
+   background-color: #333;
+   width: 800px;
+   height: 350px;
+   overflow: auto;
+   font-size: .9rem;
+}
