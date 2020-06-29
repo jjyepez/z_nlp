@@ -1,2 +1,3 @@
 node_modules/**
 libs/lorca/node_modules/**
+libs/lorca/.git
