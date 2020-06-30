@@ -65,8 +65,8 @@ module.exports = async (req, res, next) => {
    console.log({ analisis });
 
    //let analisisR1 = pnlp.analisisRimas(analisis, 'rima', 'tipoR');
-   let analisisR2 = pnlp.analisisRimas(analisis, 'rimaC', 'tipoRC', 4);
-   let analisisR3 = pnlp.analisisRimas(analisisR2, 'rimaA', 'tipoRA', 4);
+   let analisisR2 = pnlp.analisisRimas(analisis, 'rimaC', 'tipoRC');
+   let analisisR3 = pnlp.analisisRimas(analisisR2, 'rimaA', 'tipoRA');
 
    let swC = true;
    let analisisMostrar = analisisR3.map((linea, i) => {
@@ -75,9 +75,9 @@ module.exports = async (req, res, next) => {
       return `<span style='color:${color}'>` + (
          [
             linea.oracion.trim().padEnd(50, ' '),
-            linea.tipoRC,
+            linea.tipoRA,
             linea.metrica.trim().padEnd(6, ' '),
-            linea.rimaC
+            linea.rimaA
          ].join('  ')
       )
          + '</span>';

@@ -60,7 +60,10 @@ let pnlp = {
       let rimasAux = {};
       let letra = 'A';
       let rimas = analisis.map((oracion, i) => {
-         if (i % n === 0) letra = 'A';
+         if (i % n === 0) {
+            letra = 'A';
+            rimasAux = {};
+         }
          if (!rimasAux.hasOwnProperty(oracion[rimaF])) {
             rimasAux[oracion[rimaF]] = letra;
             letra = String.fromCharCode(letra.charCodeAt() + 1);
