@@ -8,6 +8,13 @@ router
          .sendFile(path.join(__dirname, '../views/index.html'));
    })
 
+   .post('/silabas.php', (req, res, next) => {
+      console.log({ req });
+      res.send(`
+         <h2>Probando 123</h2>
+      `);
+   })
+
    .use('/pnlp', require('./pnlp'))
 
    ;

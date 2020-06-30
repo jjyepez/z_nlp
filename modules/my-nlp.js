@@ -1,18 +1,14 @@
 // let fs = require('fs');
 
 let nlp = require('lorca-nlp');
-let pnlp = require('../libs/lorca/plugins/pnlp');
+let pnlp = require('../libs/plugins/pnlp');
 
-module.exports = (req, res, next) => {
+let buscapalabras = require('../libs/plugins/buscapalabras');
+
+module.exports = async (req, res, next) => {
    let body = req.body || {};
 
    let desde = 0, hasta = 1000;
-
-   // let inputContentFile = './data/sampleContent.txt';
-   // let raw = fs.readFileSync(inputContentFile)
-   //    .toString()
-   //    .replace(/\./g, ',')
-   //    ;
 
    let raw = body.input
       .replace(/\./g, ',')
@@ -25,27 +21,47 @@ module.exports = (req, res, next) => {
       .sentences()
       ;
 
-   console.log(oraciones.get());
+   let arrOraciones = oraciones.get();
+   let analisis = [0];
 
-   let analisis = [];
-   oraciones.get().map((oracion, i) => {
-
-      if (i < desde || i > hasta) {
-         return null;
+   const waitFor = (ms) => new Promise(r => setTimeout(r, ms))
+   const asyncForEach = async (array, callback) => {
+      for (let index = 0; index < array.length; index++) {
+         await callback(array[index], index, array)
       }
+   };
 
-      let metrica = pnlp.metricaOracion(oracion);
-      let ultima = nlp(oracion).words().get().pop();
+   const start = async () => {
+      await asyncForEach(arrOraciones, async (oracion) => {
+         await waitFor(150);
+         let metrica = pnlp.metricaOracion(oracion);
+         let ultima = nlp(oracion).words().get().pop();
 
-      analisis[i] = [
-         oracion,
-         // pnlp.silabasParaMetrica(oracion).join('-'),
-         ultima,
-         metrica
-      ];
-   });
+         let BP_silabas = await buscapalabras.silabas({ palabra: ultima });
+
+         console.log({ BP_silabas });
+
+         analisis.push({
+            oracion,
+            silabasM: pnlp.silabasParaMetrica(oracion).join('-'),
+            ultima,
+            silabas: BP_silabas.silabas,
+            acentuacion: BP_silabas.masInfo.ega,
+            rima: BP_silabas.masInfo.rima,
+            metrica: metrica
+               + `${(BP_silabas.masInfo.ega == 'A' ? ' + 1' : '')}`
+               + `${('ES'.includes(BP_silabas.masInfo.ega) ? ' - 1' : '')}`
+         });
+      });
+      console.log('Done');
+   };
+
+   await start();
+
+   console.log({ analisis });
 
    res.json({
       analisis
    });
+
 };
