@@ -28,7 +28,7 @@ Following, the desirables for the project.
 If you are willing to contribute, take one of them, create a branch and make a Pull Rquest when ready.
 
 ### Must Have
-
+(spanish)
 - Para la generación de los modelos de datos (NLP, ML)
    - GUI tipo sandbox
    - Análisis de textos introducidos por la GUI
@@ -68,12 +68,14 @@ If you are willing to contribute, take one of them, create a branch and make a P
    - Validar contenido generado
 
 ### Should Have
+(spanish)
 - Edición en sandbox
-- Iteración en base a cambios
+- Iteración en base a cambios en sandbox
 - Guardar y recuperar contenidos generados
 - Realimentar los modelos con los contenidos generados
 
-### Could to have
+### Could have
+(spanish)
 - Bot para twitter
 - Bot para Telegram
 - Sitio web de uso por suscripción
@@ -84,3 +86,5 @@ If you are willing to contribute, take one of them, create a branch and make a P
 
 ## Author
 @jjyepez
+
+Updated: 30/06/2020
