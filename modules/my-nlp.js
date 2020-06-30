@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
       ;
 
    let arrOraciones = oraciones.get();
-   let analisis = [0];
+   let analisis = [];
 
    const waitFor = (ms) => new Promise(r => setTimeout(r, ms))
    const asyncForEach = async (array, callback) => {
@@ -46,22 +46,45 @@ module.exports = async (req, res, next) => {
             silabasM: pnlp.silabasParaMetrica(oracion).join('-'),
             ultima,
             silabas: BP_silabas.silabas,
+            metrica: metrica +
+               `${(BP_silabas.masInfo.ega == 'A' ? ' + 1' : '')}` +
+               `${('ES'.includes(BP_silabas.masInfo.ega) ? ' - 1' : '')}`,
             acentuacion: BP_silabas.masInfo.ega,
             rima: BP_silabas.masInfo.rima,
-            metrica: metrica
-               + `${(BP_silabas.masInfo.ega == 'A' ? ' + 1' : '')}`
-               + `${('ES'.includes(BP_silabas.masInfo.ega) ? ' - 1' : '')}`
+            rimaC: BP_silabas.masInfo.rimaC,
+            rimaA: BP_silabas.masInfo.rimaA,
+            // tipoR: '?',
+            tipoRC: '?',
+            tipoRA: '?'
          });
       });
-      console.log('Done');
    };
 
    await start();
 
    console.log({ analisis });
 
+   //let analisisR1 = pnlp.analisisRimas(analisis, 'rima', 'tipoR');
+   let analisisR2 = pnlp.analisisRimas(analisis, 'rimaC', 'tipoRC', 4);
+   let analisisR3 = pnlp.analisisRimas(analisisR2, 'rimaA', 'tipoRA', 4);
+
+   let swC = true;
+   let analisisMostrar = analisisR3.map((linea, i) => {
+      swC = (i % 4 === 0) ? !swC : swC;
+      let color = swC ? 'white' : 'grey';
+      return `<span style='color:${color}'>` + (
+         [
+            linea.oracion.trim().padEnd(50, ' '),
+            linea.tipoRC,
+            linea.metrica.trim().padEnd(6, ' '),
+            linea.rimaC
+         ].join('  ')
+      )
+         + '</span>';
+   });
+
    res.json({
-      analisis
+      analisisMostrar
    });
 
 };

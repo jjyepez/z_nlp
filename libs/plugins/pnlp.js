@@ -54,6 +54,23 @@ let pnlp = {
       let newSilabas = this.silabasParaMetrica(oracion);
       metrica = newSilabas.length;
       return metrica;
+   },
+
+   analisisRimas: function (analisis, rimaF, rimaD, n) {
+      let rimasAux = {};
+      let letra = 'A';
+      let rimas = analisis.map((oracion, i) => {
+         if (i % n === 0) letra = 'A';
+         if (!rimasAux.hasOwnProperty(oracion[rimaF])) {
+            rimasAux[oracion[rimaF]] = letra;
+            letra = String.fromCharCode(letra.charCodeAt() + 1);
+         }
+         return {
+            ...oracion,
+            [rimaD]: rimasAux[oracion[rimaF]]
+         };
+      });
+      return rimas;
    }
 
 

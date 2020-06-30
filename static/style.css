@@ -22,7 +22,7 @@ body {
 }
 
 .output {
-   color: greenyellow;
+   color: #eee;
    background-color: #333;
    width: 800px;
    height: 350px;

@@ -48,12 +48,20 @@ let buscapalabras = {
                .reverse()
          )
             .map((silaba, i) => silaba === silaba.toUpperCase())
-            .indexOf(true)]
+            .indexOf(true)];
+
+      let rima = silabas.slice(silabas.indexOf(silabas
+         .split('-')
+         .reverse()['AGESSSSSSSSSSSS'.indexOf(ega)]), 1000);
+
+      let rimaC = rima
+         .replace(/^(\w*)?([aeiouáéíóú])(.*)/ig, 'x$2$3');
+
       let masInfo = {
          ega,
-         rima: silabas.slice(silabas.indexOf(silabas
-            .split('-')
-            .reverse()['AGESSSSSSSSSSSS'.indexOf(ega)]), 1000)
+         rima,
+         rimaC,
+         rimaA: rimaC.replace(/[^aeiouáéíóú-]/ig, 'x')
       };
 
       return {
